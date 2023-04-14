@@ -1,8 +1,8 @@
 import network
 from time import sleep
 
-ssid = "Fusion Automate"
-password = "Fusion_Automate"
+ssid = "SSID"
+password = "PASSWORD"
 
 def connect():
     #Connect to WLAN
