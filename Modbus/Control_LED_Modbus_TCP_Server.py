@@ -1,4 +1,3 @@
-# import modbus host classes
 from umodbus.tcp import ModbusTCP
 import time
 from machine import Pin
@@ -39,22 +38,15 @@ is_bound = client.get_bound_status()
 if not is_bound:
     client.bind(local_ip=local_ip, local_port=tcp_port)
 
-
-def my_coil_set_cb(reg_type, address, val):
-    #print('Custom callback, called on setting {} at {} to: {}'.format(reg_type, address, val))
-    if int(val[0]) == 1:myLED.on()
-    elif int(val[0]) == 0:myLED.off()
-
-def my_coil_get_cb(reg_type, address, val):
-    #print('Custom callback, called on getting {} at {}, currently: {}'.format(reg_type, address, val))
+def LED_cb(reg_type, address, val):
     if int(val[0]) == 1:myLED.on()
     elif int(val[0]) == 0:myLED.off()
 
 # commond slave register setup, to be used with the Master example above
-register_definitions = {"COILS": {"EXAMPLE_COIL": {"register": 2,"len": 1,"val": 1}}}
+register_definitions = {"COILS": {"LED": {"register": 0,"len": 1,"val": 0}}}
 
-register_definitions['COILS']['EXAMPLE_COIL']['on_set_cb'] = my_coil_set_cb
-register_definitions['COILS']['EXAMPLE_COIL']['on_get_cb'] = my_coil_get_cb
+register_definitions['COILS']['LED']['on_set_cb'] = LED_cb
+register_definitions['COILS']['LED']['on_get_cb'] = LED_cb
 
 
 print('Setting up registers ...')
