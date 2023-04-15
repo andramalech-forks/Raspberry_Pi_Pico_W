@@ -37,17 +37,17 @@ is_bound = client.get_bound_status()
 if not is_bound:
     client.bind(local_ip=local_ip, local_port=tcp_port)
 
-#with open('registers.json', 'r') as file:
-#    register_definitions = json.load(file)
-
 # commond slave register setup, to be used with the Master example above
 register_definitions = \
-        {'ISTS': {'EXAMPLE_ISTS': {'val': 0, 'register': 67, 'len': 1}},
-         'IREGS': {'EXAMPLE_IREG': {'val': 55, 'register': 10, 'len': 1}},
-         'HREGS': {'EXAMPLE_HREG2': {'val': 94, 'register': 94, 'len': 1},
-                   'EXAMPLE_HREG1': {'val': 93, 'register': 93, 'len': 1}},
-         'COILS': {'EXAMPLE_COIL1': {'val': 1, 'register': 1, 'len': 1},
-                   'EXAMPLE_COIL2': {'val': 0, 'register': 2, 'len': 1}}}
+        {'ISTS': {'EXAMPLE_ISTS': {'val': 1, 'register': 0, 'len': 1}},
+         'IREGS': {'EXAMPLE_IREG': {'val': 1, 'register': 0, 'len': 1}},
+         'HREGS': {'EXAMPLE_HREG0': {'val': 0, 'register': 0, 'len': 1},
+                   'EXAMPLE_HREG1': {'val': 1, 'register': 1, 'len': 1},
+                   'EXAMPLE_HREG2': {'val': 2, 'register': 2, 'len': 1},
+                   'EXAMPLE_HREG3': {'val': 3, 'register': 3, 'len': 1},
+                   'EXAMPLE_HREG4': {'val': 4, 'register': 4, 'len': 1}},
+         'COILS': {'EXAMPLE_COIL0': {'val': 1, 'register': 0, 'len': 1},
+                   'EXAMPLE_COIL1': {'val': 1, 'register': 1, 'len': 1}}}
 
 print('Setting up registers ...')
 client.setup_registers(registers=register_definitions)
@@ -64,4 +64,3 @@ while True:
         print('Exception during execution: {}'.format(e))
 
 print("Finished providing/accepting data as client")
-
