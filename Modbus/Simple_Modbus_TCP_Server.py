@@ -12,7 +12,7 @@ station.active(False)
 time.sleep(1)
 station.active(True)
 
-# station.connect('SSID', 'PASSWORD')
+#station.connect('SSID', 'PASSWORD')
 station.connect('Fusion Automate', 'Fusion_Automate')
 time.sleep(1)
 
@@ -44,7 +44,7 @@ if not is_bound:
 # commond slave register setup, to be used with the Master example above
 register_definitions = \
         {'ISTS': {'EXAMPLE_ISTS': {'val': 0, 'register': 67, 'len': 1}},
-         'IREGS': {'EXAMPLE_IREG': {'val': 60001, 'register': 10, 'len': 1}},
+         'IREGS': {'EXAMPLE_IREG': {'val': 55, 'register': 10, 'len': 1}},
          'HREGS': {'EXAMPLE_HREG2': {'val': 94, 'register': 94, 'len': 1},
                    'EXAMPLE_HREG1': {'val': 93, 'register': 93, 'len': 1}},
          'COILS': {'EXAMPLE_COIL1': {'val': 1, 'register': 1, 'len': 1},
