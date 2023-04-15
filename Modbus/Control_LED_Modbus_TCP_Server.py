@@ -15,14 +15,14 @@ station.active(False)
 time.sleep(1)
 station.active(True)
 
-station.connect('WIFI SSID', 'WIFI PASSWORD')
+# station.connect('SSID', 'PASSWORD')
+station.connect('Fusion Automate', 'Fusion_Automate')
 time.sleep(1)
 
 while True:
     print('Waiting for WiFi connection...')
     if station.isconnected():
-        print('Connected to WiFi.')
-        print(station.ifconfig())
+        print(f'Connected to WiFi, Pico W IP : {station.ifconfig()[0]}')
         break
     time.sleep(2)
 # ===============================================
