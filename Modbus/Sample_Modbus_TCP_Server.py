@@ -2,7 +2,6 @@
 from umodbus.tcp import ModbusTCP
 import time
 import network
-
 # ===============================================
 # connect to a network
 station = network.WLAN(network.STA_IF)
@@ -20,11 +19,11 @@ time.sleep(1)
 while True:
     print('Waiting for WiFi connection...')
     if station.isconnected():
-        print('Connected to WiFi.')
-        print(station.ifconfig())
+        print(f'Connected to WiFi, Pico W IP : {station.ifconfig()[0]}')
         break
     time.sleep(2)
 # ===============================================
+
 # TCP Slave setup
 tcp_port = 502              # port to listen to
 # set IP address of the MicroPython device explicitly
