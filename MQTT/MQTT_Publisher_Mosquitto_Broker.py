@@ -3,8 +3,6 @@ from umqtt.simple import MQTTClient
 import machine
 import time
 
-
-
 # ===============================================
 # connect to a network
 station = network.WLAN(network.STA_IF)
