@@ -19,11 +19,11 @@ time.sleep(1)
 while True:
     print('Waiting for WiFi connection...')
     if station.isconnected():
-        print('Connected to WiFi.')
-        print(station.ifconfig())
+        print(f'Connected to WiFi, Pico W IP : {station.ifconfig()[0]}')
         break
     time.sleep(2)
 # ===============================================
+
 # TCP Slave setup
 slave_tcp_port = 502            # port to listen to
 slave_addr = 10                 # bus address of client
