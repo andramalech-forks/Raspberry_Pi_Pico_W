@@ -2,18 +2,27 @@ import network, utime, machine, time, random
 import ubinascii
 from umqtt.simple import MQTTClient
 
-# Fill in your WiFi network name (ssid) and password here:
-wifi_ssid = ""
-wifi_password = ""
-
-# Connect to WiFi
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-wlan.connect(wifi_ssid, wifi_password)
-while wlan.isconnected() == False:
-    print('Waiting for connection...')
+# ===============================================
+# connect to a network
+station = network.WLAN(network.STA_IF)
+if station.active() and station.isconnected():
+    station.disconnect()
     time.sleep(1)
-print("Connected to WiFi")
+station.active(False)
+time.sleep(1)
+station.active(True)
+
+# station.connect('SSID', 'PASSWORD')
+station.connect('Fusion Automate', 'Fusion_Automate')
+time.sleep(1)
+
+while True:
+    print('Waiting for WiFi connection...')
+    if station.isconnected():
+        print(f'Connected to WiFi, Pico W IP : {station.ifconfig()[0]}')
+        break
+    time.sleep(2)
+# ===============================================
 
 # Default  MQTT_BROKER to connect to
 mqtt_host = "io.adafruit.com"
