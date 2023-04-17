@@ -30,7 +30,7 @@ while True:
 MQTT_BROKER_IP = '192.168.29.221'
 MQTT_BROKER_PORT = 1883
 MQTT_CLIENT_ID = 'Pico_W_Mqtt_Client'
-MQTT_TOPIC = 'Pico_W/Modbus/'
+MQTT_TOPIC = 'Pico_W/Modbus'
 
 # Define MQTT client
 mqtt_client = MQTTClient(MQTT_CLIENT_ID, MQTT_BROKER_IP, MQTT_BROKER_PORT,keepalive=30)
@@ -51,15 +51,31 @@ if not is_bound:
 
 def LED_cb(reg_type, address, val):
     print(reg_type, address, val)
-    mqtt_client.publish(MQTT_TOPIC+str(reg_type)+"-"+str(address), str(int(val[0])))
+    print(MQTT_TOPIC+"/"+str(reg_type)+" - "+str(address))
+    mqtt_client.publish(MQTT_TOPIC+"/"+str(reg_type)+" - "+str(address), str(val))
     if int(val[0]) == 1:myLED.on()
     elif int(val[0]) == 0:myLED.off()
+    else: pass
 
 # commond slave register setup, to be used with the Master example above
-register_definitions = {"COILS": {"LED": {"register": 0,"len": 1,"val": 0}}}
+register_definitions = {
+'ISTS': {'EXAMPLE_ISTS': {'val': 0, 'register': 0, 'len': 1}},
+'IREGS': {'EXAMPLE_IREG1': {'val': 0, 'register': 0, 'len': 1},
+          'EXAMPLE_IREG2': {'val': 0, 'register': 1, 'len': 1}},
+'HREGS': {'EXAMPLE_HREG2': {'val': 0, 'register': 0, 'len': 1},
+          'EXAMPLE_HREG1': {'val': 0, 'register': 1, 'len': 1}},
+'COILS': {'EXAMPLE_COIL1': {'val': 0, 'register': 0, 'len': 1},
+          'EXAMPLE_COIL2': {'val': 0, 'register': 1, 'len': 1}}
+}
 
 #register_definitions['COILS']['LED']['on_set_cb'] = LED_cb
-register_definitions['COILS']['LED']['on_get_cb'] = LED_cb
+#register_definitions['COILS']['EXAMPLE_COIL1']['on_get_cb'] = LED_cb
+#register_definitions['COILS']['EXAMPLE_COIL2']['on_get_cb'] = LED_cb
+register_definitions['HREGS']['EXAMPLE_HREG1']['on_get_cb'] = LED_cb
+register_definitions['HREGS']['EXAMPLE_HREG2']['on_get_cb'] = LED_cb
+#register_definitions['IREGS']['EXAMPLE_IREG1']['on_get_cb'] = LED_cb
+#register_definitions['IREGS']['EXAMPLE_IREG2']['on_get_cb'] = LED_cb
+#register_definitions['ISTS']['EXAMPLE_ISTS']['on_get_cb'] = LED_cb
 
 
 print('Setting up registers ...')
