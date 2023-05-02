@@ -34,7 +34,7 @@ ip = '192.168.1.5'
 
 # Setup Modbus TCP Client
 modbus_client = ModbusTCPMaster(slave_ip=ip,slave_port=port,timeout=5)
-print(f'Updating data to Modbus TCP Server at {ip}:{port}')
+print(f'Requesting data from Modbus TCP Server at {ip}:{port}')
        
 # READ COILS
 coil_status = modbus_client.read_coils(slave_addr=slave_addr,starting_addr=coil_address,coil_qty=coil_qty)
