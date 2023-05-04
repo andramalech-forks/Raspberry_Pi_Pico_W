@@ -35,7 +35,7 @@ ip = '192.168.29.221'
 
 # Setup Modbus TCP Client
 modbus_client = ModbusTCPMaster(slave_ip=ip,slave_port=port,timeout=5)
-print(f'Updating data to Modbus TCP Server at {ip}:{port}')
+print(f'Requesting data from Modbus TCP Server at {ip}:{port}')
 
 register_value = modbus_client.read_input_registers(slave_addr=slave_addr,starting_addr=ireg_address,register_qty=register_qty)
 print('Status of IREG from {} to {} : {}'.format(ireg_address, ireg_address+register_qty, register_value))
