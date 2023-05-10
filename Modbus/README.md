@@ -1,4 +1,4 @@
-`MicroPython Library: micropython-modbus
+### MicroPython Library: micropython-modbus
 Installed version: 2.3.4
 Installed to: /lib
 Latest stable version: 2.3.4
