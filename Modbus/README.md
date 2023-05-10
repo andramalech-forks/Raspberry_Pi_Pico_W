@@ -5,6 +5,4 @@
 - Summary: MicroPython ModBus TCP and RTU library supporting client and host mode
 - Author: brainelectronics
 - Homepage: https://github.com/brainelectronics/micropython-modbus
-- PyPI page: https://pypi.org/project/micropython-modbus/`
-
-📑[Training index](https://fusion-automate.super.site/raspbeery-pi-pico-w-modbus)
+- PyPI page: https://pypi.org/project/micropython-modbus/
